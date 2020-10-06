@@ -1,0 +1,50 @@
+<div>
+  <div class="card bg-info text-white">
+    <div class="card-body">
+      <h4>Please provide the following details</h4>
+      <form [formGroup]="formGroup">
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" class="form-control" id="fullname" placeholder="John Doe" formControlName="fullname">
+          <div class="alert alert-danger" role="alert"
+            *ngIf="formGroup.get('fullname').errors && (formGroup.get('fullname').touched || formGroup.get('fullname').dirty)">
+            Name should contain atleast 3 letters.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="johndoe@domain.com" formControlName="email">
+          <div class="alert alert-danger" role="alert"
+            *ngIf="formGroup.get('email').errors && (formGroup.get('email').touched || formGroup.get('email').dirty)">
+            Please enter a valid email id.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <select class="form-control" id="country" (change)="onSelectingCountry($event.target.value)">
+            <option *ngFor="let country of countries">{{country}}</option>
+          </select>
+          <div class="alert alert-danger" role="alert"
+            *ngIf="formGroup.get('country').errors && (formGroup.get('country').touched || formGroup.get('country').dirty)">
+            Please select your country.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <select class="form-control" id="state" (change)="onSelectingState($event.target.value)">
+            <option *ngFor="let state of states">{{state}}</option>
+          </select>
+          <div class="alert alert-danger" role="alert"
+            *ngIf="formGroup.get('state').errors && (formGroup.get('state').touched || formGroup.get('state').dirty)">
+            Please select your state.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Timestamp</label>
+          <input type="timestamp" class="form-control" id="timestamp" [value]="timestamp" disabled="true">
+        </div>
+        <button class="btn btn-danger mb-2" [disabled]="buttonDisable()" (click)="submit()">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div>
+  <h4>Services Provided for each model</h4>
+  <i>(This component uses mock server to fetch data and display)</i>
+  <div class="row p-2" *ngFor="let car of cars; let i=index">
+    <div class="col-md-2">
+      {{car}}
+    </div>
+    <div class="col-md-10">
+      <a href="javascript:void(0)" (click)="getServiceList(car,serviceModal)" data-toggle="modal"
+        data-target="#serviceModal">List of
+        services provided</a>
+    </div>
+  </div>
+</div>
+
+<ng-template #serviceModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left"> {{selectedCar}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <div class="col-md-12">
+          <ul>
+            <li *ngFor="let service of serviceList">{{service}}</li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

@@ -1,0 +1,44 @@
+<div class="card panel-primary">
+  <div class="card-header" (click)="toggleData = !toggleData">
+    Account Details
+    <span style="float: right;">
+      <b *ngIf="toggleData;else elseBlock">
+        &and;
+      </b>
+      <ng-template #elseBlock>
+        <b>
+          &or;
+        </b>
+      </ng-template>
+    </span>
+  </div>
+  <div class="card-body" *ngIf="toggleData">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Bank</th>
+            <th>Account Number</th>
+            <th>KYC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of tableData;index as i">
+            <td>{{i}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.bankName}}</td>
+            <td>{{data.accNo}}</td>
+            <td>
+              <img *ngIf="data.kycVerified;else notVerified" style="height: 20px;" src="./../../assets/verified.jpg" />
+              <ng-template #notVerified>
+                <img style="height: 25px;margin-left: -3px;" src="./../../assets/not-verified.jpg" />
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

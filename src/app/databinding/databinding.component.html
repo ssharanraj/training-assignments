@@ -1,0 +1,65 @@
+<div>
+  <div class="card panel-primary p-3">
+    <div class="card-header" (click)="toggleOneWay = !toggleOneWay">
+      One-way Databinding
+      <span style="float: right;">
+        <b *ngIf="toggleOneWay;else elseBlockA">
+          &and;
+        </b>
+        <ng-template #elseBlockA>
+          <b>
+            &or;
+          </b>
+        </ng-template>
+      </span>
+    </div>
+    <div class="card-body" style="height: 15vw;" *ngIf="toggleOneWay">
+      <div class="row">
+        <div class="col-md-2">
+          <label>Choose an animal:</label>
+        </div>
+        <div class="col-md-10">
+          <select (change)="dropDownChange($event.target.value)">
+            <option *ngFor="let animal of animals" [ngValue]="animal.value">{{animal.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <img *ngIf="selectedAnimal" src="../../assets/{{selectedAnimal}}.jpg">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card panel-primary p-3">
+    <div class="card-header" (click)="toggleTwoWay = !toggleTwoWay">
+      Two-way Databinding
+      <span style="float: right;">
+        <b *ngIf="toggleTwoWay;else elseBlockB">
+          &and;
+        </b>
+        <ng-template #elseBlockB>
+          <b>
+            &or;
+          </b>
+        </ng-template>
+      </span>
+    </div>
+    <div class="card-body" *ngIf="toggleTwoWay">
+      <div class="row">
+        <div class="col-md-2"> <label>Enter the text:</label></div>
+        <div class="col-md-10"> <input type="text" [(ngModel)]="text" placeholder="Enter the text here"/></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><label>Text in Uppescase:</label></div>
+        <div class="col-md-10">{{text.toUpperCase()}}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><label>Text in Lowercase:</label></div>
+        <div class="col-md-10">{{text.toLowerCase()}}</div>
+      </div>
+    </div>
+  </div>
+</div>

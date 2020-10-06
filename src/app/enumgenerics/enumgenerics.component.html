@@ -1,0 +1,13 @@
+<div class='row'>
+  <div class=col-md-4>
+    <b>Please Select a date</b>
+  </div>
+  <div class=col-md-8>
+    <input type="date" [(ngModel)]="selectedDate" (input)="getWeekDay()">
+  </div>
+</div>
+<p *ngIf="selectedDate">
+  The selected date({{selectedDate}}) is the {{dayNum}}{{dayNum>3?'th':dayNum===1?'st':dayNum===2?'nd':'rd'}} day of
+  the
+  week & it is a <b>{{day}}</b>!
+</p>
